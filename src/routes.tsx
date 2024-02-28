@@ -1,12 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import { AppLayout, AuthLayout } from '@/layouts'
-import { Dashboard, Orders, SignIn, SignUp } from '@/pages'
+import { Dashboard, NotFound, Orders, SignIn, SignUp } from '@/pages'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
+    errorElement: <NotFound />,
     children: [
       { path: '/', element: <Dashboard /> },
       { path: '/orders', element: <Orders /> },
