@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 import { cn } from '@/libs'
 
-const styles = cva('min-h-screen grid grid-cols-2')
+const styles = cva('min-h-screen grid grid-cols-2 antialiased')
 
 export type AuthLayoutProps = ComponentProps<'div'>
 
