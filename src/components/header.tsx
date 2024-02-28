@@ -4,7 +4,9 @@ import { ComponentProps } from 'react'
 
 import { cn } from '@/libs'
 
+import { AccountMenu } from './account-menu'
 import { NavLink } from './nav-link'
+import { ThemeToggle } from './theme'
 import { Separator } from './ui'
 
 const styles = cva('border-b')
@@ -29,6 +31,11 @@ export function Header({ className, ...props }: HeaderProps) {
             Início
           </NavLink>
         </nav>
+
+        <div className="ml-auto flex items-center gap-2">
+          <ThemeToggle />
+          <AccountMenu />
+        </div>
       </section>
     </header>
   )
