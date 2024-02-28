@@ -1,5 +1,6 @@
 import { cva } from 'class-variance-authority'
 import { ComponentProps } from 'react'
+import { Helmet } from 'react-helmet-async'
 
 import { cn } from '@/libs'
 
@@ -9,8 +10,11 @@ export type SignInProps = ComponentProps<'div'>
 
 export function SignIn({ className, ...props }: SignInProps) {
   return (
-    <div className={cn(styles({ className }))} {...props}>
-      SignIn
-    </div>
+    <>
+      <Helmet title="Login" />
+      <div className={cn(styles({ className }))} {...props}>
+        SignIn
+      </div>
+    </>
   )
 }
