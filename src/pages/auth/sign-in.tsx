@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
 import { cva } from 'class-variance-authority'
 import { ComponentProps } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -7,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { signIn } from '@/api'
 import { Button, Input, Label } from '@/components/ui'
 import { cn } from '@/libs'
 
@@ -29,9 +31,13 @@ export function SignIn({ className, ...props }: SignInProps) {
     resolver: zodResolver(singInFormSchema),
   })
 
+  const { mutateAsync: authenticate } = useMutation({
+    mutationFn: signIn,
+  })
+
   async function handleSignIn(data: SignInFormInput) {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await authenticate({ email: data.email })
       // throw new Error()
       toast.success('Enviamos um link de autenticação para o seu e-mail!')
     } catch {
