@@ -22,7 +22,7 @@ export function AuthLayout({ className, ...props }: AuthLayoutProps) {
         </footer>
       </aside>
 
-      <main className="flex flex-col items-center justify-center">
+      <main className="relative flex flex-col items-center justify-center">
         <Outlet />
       </main>
     </div>
