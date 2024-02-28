@@ -1,0 +1,21 @@
+module.exports = {
+  plugins: ['prettier-plugin-tailwindcss'],
+  tailwindAttributes: [
+    'class',
+    'className',
+    'ngClass',
+    'variants',
+    'ComponentClass',
+    'variant',
+    'primary',
+    'twMerge',
+    'tv',
+    'base',
+    'ghost',
+    'outline',
+    'defaultVariants',
+    'dark',
+    'hover',
+    'focus',
+  ],
+}
