@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority'
 import { ComponentProps } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -23,12 +23,17 @@ const styles = cva('p-8')
 export type SignInProps = ComponentProps<'div'>
 
 export function SignIn({ className, ...props }: SignInProps) {
+  const [searchParams] = useSearchParams()
+
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
   } = useForm<SignInFormInput>({
     resolver: zodResolver(singInFormSchema),
+    defaultValues: {
+      email: searchParams.get('email') ?? '',
+    },
   })
 
   const { mutateAsync: authenticate } = useMutation({
