@@ -1,15 +1,37 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { cva } from 'class-variance-authority'
 import { ComponentProps } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 import { Button, Input, Label } from '@/components/ui'
 import { cn } from '@/libs'
+
+const singInFormSchema = z.object({
+  email: z.string().email(),
+})
+
+type SignInFormInput = z.infer<typeof singInFormSchema>
 
 const styles = cva('p-8')
 
 export type SignInProps = ComponentProps<'div'>
 
 export function SignIn({ className, ...props }: SignInProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<SignInFormInput>({
+    resolver: zodResolver(singInFormSchema),
+  })
+
+  async function handleSignIn(data: SignInFormInput) {
+    console.log(data)
+
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+  }
   return (
     <>
       <Helmet title="Login" />
@@ -24,13 +46,18 @@ export function SignIn({ className, ...props }: SignInProps) {
             </p>
           </section>
 
-          <form className="flex flex-col gap-4">
+          <form
+            onSubmit={handleSubmit(handleSignIn)}
+            className="flex flex-col gap-4"
+          >
             <fieldset>
               <Label htmlFor="email">Seu e-mail</Label>
-              <Input id="email" type="email" />
+              <Input id="email" type="email" {...register('email')} />
             </fieldset>
 
-            <Button type="submit">Acessar painel</Button>
+            <Button disabled={isSubmitting} type="submit">
+              Acessar painel
+            </Button>
           </form>
         </div>
       </div>
