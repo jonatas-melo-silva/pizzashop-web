@@ -1,8 +1,16 @@
 import { cva } from 'class-variance-authority'
 import { ArrowRight, Search, X } from 'lucide-react'
 
-import { Button, TableCell, TableRow } from '@/components'
+import {
+  Button,
+  Dialog,
+  DialogTrigger,
+  TableCell,
+  TableRow,
+} from '@/components'
 import { cn } from '@/libs'
+
+import { OrderDetails } from './order-details'
 
 const styles = cva('')
 
@@ -14,10 +22,15 @@ export function OrderTableRow({ className, ...props }: OrderTableRowProps) {
   return (
     <TableRow className={cn(styles({ className }))} {...props}>
       <TableCell>
-        <Button variant="outline" size="xs">
-          <Search className="h-3 w-3" />
-          <span className="sr-only">Detalhes do pedido</span>
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" size="xs">
+              <Search className="h-3 w-3" />
+              <span className="sr-only">Detalhes do pedido</span>
+            </Button>
+          </DialogTrigger>
+          <OrderDetails />
+        </Dialog>
       </TableCell>
       <TableCell className="font-mono text-xs font-medium">
         sdf897sdf987sdf98

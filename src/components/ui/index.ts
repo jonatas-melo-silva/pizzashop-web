@@ -1,4 +1,5 @@
 export * from './button'
+export * from './dialog.tsx'
 export * from './dropdown-menu'
 export * from './input'
 export * from './label'
