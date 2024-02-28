@@ -3,6 +3,7 @@ import { cva } from 'class-variance-authority'
 import { ComponentProps } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { Button, Input, Label } from '@/components/ui'
@@ -28,9 +29,18 @@ export function SignIn({ className, ...props }: SignInProps) {
   })
 
   async function handleSignIn(data: SignInFormInput) {
-    console.log(data)
-
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // throw new Error()
+      toast.success('Enviamos um link de autenticação para o seu e-mail!')
+    } catch {
+      toast.error('Credenciais inválidas!', {
+        action: {
+          label: 'Reenviar e-mail',
+          onClick: () => handleSignIn(data),
+        },
+      })
+    }
   }
   return (
     <>
