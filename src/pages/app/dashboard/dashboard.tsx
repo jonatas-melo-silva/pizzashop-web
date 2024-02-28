@@ -9,6 +9,7 @@ import {
   MonthCanceledOrdersAmountCard,
   MonthOrdersAmountCard,
   MonthRevenueCard,
+  PopularProductsChart,
   RevenuesChart,
 } from './'
 
@@ -32,6 +33,7 @@ export function Dashboard({ className, ...props }: DashboardProps) {
 
         <section className="grid grid-cols-9 gap-4">
           <RevenuesChart />
+          <PopularProductsChart />
         </section>
       </div>
     </>
