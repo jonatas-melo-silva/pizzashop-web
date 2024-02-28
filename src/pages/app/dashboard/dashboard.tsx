@@ -9,6 +9,7 @@ import {
   MonthCanceledOrdersAmountCard,
   MonthOrdersAmountCard,
   MonthRevenueCard,
+  RevenuesChart,
 } from './'
 
 const styles = cva('flex flex-col gap-4')
@@ -27,6 +28,10 @@ export function Dashboard({ className, ...props }: DashboardProps) {
           <MonthOrdersAmountCard />
           <DayOrdersAmountCard />
           <MonthCanceledOrdersAmountCard />
+        </section>
+
+        <section className="grid grid-cols-9 gap-4">
+          <RevenuesChart />
         </section>
       </div>
     </>
