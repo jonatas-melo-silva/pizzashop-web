@@ -5,8 +5,12 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-import { getManagedRestaurant, updateProfile } from '@/api'
-import { cn } from '@/libs'
+import {
+  getManagedRestaurant,
+  GetManagedRestaurantResponse,
+  updateProfile,
+} from '@/api'
+import { cn, queryClient } from '@/libs'
 
 import {
   Button,
@@ -58,6 +62,22 @@ export function StoreProfileDialog({
 
   const { mutateAsync: updateProfileFn } = useMutation({
     mutationFn: updateProfile,
+    onSuccess(_, { name, description }) {
+      const cached = queryClient.getQueryData<GetManagedRestaurantResponse>([
+        'managed-restaurant',
+      ])
+
+      if (cached) {
+        queryClient.setQueryData<GetManagedRestaurantResponse>(
+          ['managed-restaurant'],
+          {
+            ...cached,
+            name,
+            description,
+          },
+        )
+      }
+    },
   })
 
   async function handleUpdateProfile(data: StoreProfileFormInputs) {
@@ -104,11 +124,11 @@ export function StoreProfileDialog({
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="ghost" type="button" disabled={isSubmitting}>
+            <Button variant="ghost" type="button">
               Cancelar
             </Button>
           </DialogClose>
-          <Button variant="success" type="submit">
+          <Button variant="success" type="submit" disabled={isSubmitting}>
             Salvar
           </Button>
         </DialogFooter>
