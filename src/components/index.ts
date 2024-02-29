@@ -1,6 +1,7 @@
 export * from './account-menu'
 export * from './header'
 export * from './nav-link'
+export * from './order-status'
 export * from './pagination'
 export * from './store-profile-dialog'
 export * from './theme'

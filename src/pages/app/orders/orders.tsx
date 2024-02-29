@@ -1,7 +1,9 @@
+import { useQuery } from '@tanstack/react-query'
 import { cva } from 'class-variance-authority'
 import { ComponentProps } from 'react'
 import { Helmet } from 'react-helmet-async'
 
+import { getOrders } from '@/api'
 import {
   Pagination,
   Table,
@@ -20,6 +22,11 @@ const styles = cva('flex flex-col gap-4')
 export type OrdersProps = ComponentProps<'div'>
 
 export function Orders({ className, ...props }: OrdersProps) {
+  const { data: result } = useQuery({
+    queryKey: ['orders'],
+    queryFn: getOrders,
+  })
+
   return (
     <>
       <Helmet title="Pedidos" />
@@ -44,13 +51,10 @@ export function Orders({ className, ...props }: OrdersProps) {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {[...Array(10)].map(() => {
-                  return (
-                    <OrderTableRow
-                      key={new Date().getTimezoneOffset.toString()}
-                    />
-                  )
-                })}
+                {result &&
+                  result.orders.map((order) => {
+                    return <OrderTableRow key={order.orderId} order={order} />
+                  })}
               </TableBody>
             </Table>
           </section>
