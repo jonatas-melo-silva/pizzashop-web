@@ -1,6 +1,7 @@
 import { cva } from 'class-variance-authority'
 import { Home, Pizza, UtensilsCrossed } from 'lucide-react'
 import { ComponentProps } from 'react'
+import { Link } from 'react-router-dom'
 
 import { cn } from '@/libs'
 
@@ -17,7 +18,9 @@ export function Header({ className, ...props }: HeaderProps) {
   return (
     <header className={cn(styles({ className }))} {...props}>
       <section className="flex h-16 items-center gap-6 px-6">
-        <Pizza className="h-6 w-6" />
+        <Link to="/">
+          <Pizza className="h-6 w-6" />
+        </Link>
 
         <Separator orientation="vertical" className="h-6" />
 
