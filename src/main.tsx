@@ -5,8 +5,12 @@ import ReactDOM from 'react-dom/client'
 
 import { App } from '@/app'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import { enableMS } from './api/mocks'
+
+enableMS().then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  )
+})
