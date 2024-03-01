@@ -27,10 +27,13 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    /* Config types vitest*/
+    "types": ["vitest/globals"]
   },
   "include": [
-    "src"
+    "src",
+    "test"
   ],
   "references": [
     {
