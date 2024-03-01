@@ -28,7 +28,7 @@ const data = [
   { date: '16/12', revenue: 640 },
 ]
 
-const styles = cva('col-span-6')
+const styles = cva('col-span-1 lg:col-span-6')
 
 export type RevenuesChartProps = {
   readonly className?: string

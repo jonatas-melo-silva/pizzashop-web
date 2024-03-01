@@ -16,7 +16,7 @@ const COLORS = [
   colors.rose[500],
 ]
 
-const styles = cva('col-span-3')
+const styles = cva('col-span-1 lg:col-span-3')
 
 export type PopularProductsChartProps = {
   readonly className?: string
