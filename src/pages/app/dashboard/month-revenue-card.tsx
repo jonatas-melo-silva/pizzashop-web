@@ -6,6 +6,8 @@ import { getMonthRevenue } from '@/api'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components'
 import { cn } from '@/libs'
 
+import { MetricCardSkeleton } from './metric-card-skeleton'
+
 const styles = cva('')
 
 export type MonthRevenueCardProps = {
@@ -30,7 +32,7 @@ export function MonthRevenueCard({
         <DollarSign className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
       <CardContent className="space-y-1">
-        {monthRevenue && (
+        {monthRevenue ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
               {(monthRevenue.receipt / 100).toLocaleString('pt-BR', {
@@ -56,6 +58,8 @@ export function MonthRevenueCard({
               )}
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>

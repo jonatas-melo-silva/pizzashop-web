@@ -1,5 +1,6 @@
 export * from './dashboard'
 export * from './day-orders-amount-card'
+export * from './metric-card-skeleton'
 export * from './month-canceled-orders-amount-card'
 export * from './month-orders-amount-card'
 export * from './month-revenue-card'

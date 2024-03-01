@@ -6,6 +6,8 @@ import { getMonthOrdersAmount } from '@/api'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components'
 import { cn } from '@/libs'
 
+import { MetricCardSkeleton } from './metric-card-skeleton'
+
 const styles = cva('')
 
 export type MonthOrdersAmountCardProps = {
@@ -28,7 +30,7 @@ export function MonthOrdersAmountCard({
         <Utensils className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
       <CardContent className="space-y-1">
-        {monthOrdersAmount && (
+        {monthOrdersAmount ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
               {monthOrdersAmount.amount.toLocaleString('pt-BR')}
@@ -51,6 +53,8 @@ export function MonthOrdersAmountCard({
               )}
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>
