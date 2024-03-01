@@ -20,6 +20,8 @@ import {
 } from '@/components'
 import { cn } from '@/libs'
 
+import { OrderDetailsSkeleton } from './order-details-skeleton'
+
 const styles = cva('')
 
 export type OrderDetailsProps = {
@@ -47,7 +49,7 @@ export function OrderDetails({
         <DialogDescription>Detalhes do pedido</DialogDescription>
       </DialogHeader>
 
-      {order && (
+      {order ? (
         <div className="space-y-6">
           <Table>
             <TableBody>
@@ -140,6 +142,8 @@ export function OrderDetails({
             </TableFooter>
           </Table>
         </div>
+      ) : (
+        <OrderDetailsSkeleton />
       )}
     </DialogContent>
   )
