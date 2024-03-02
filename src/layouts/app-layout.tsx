@@ -23,6 +23,8 @@ export function AppLayout({ className, ...props }: AppLayoutProps) {
 
           if (status === 401 && code === 'UNAUTHORIZED') {
             navigate('/sign-in', { replace: true })
+          } else {
+            throw error
           }
         }
       },
